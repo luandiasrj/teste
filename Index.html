@@ -1,0 +1,318 @@
+<html><head><base href="/">
+<style>
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f0f0;
+  gap: 30px;
+}
+
+.clock {
+  width: 250px;
+  height: 250px; 
+  border-radius: 50%;
+  position: relative;
+}
+
+.clock-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.digital-time {
+  font-family: Arial, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  -webkit-transform-origin: bottom;
+  -moz-transform-origin: bottom;
+  -ms-transform-origin: bottom;
+  -o-transform-origin: bottom;
+  transform-origin: bottom;
+  border-radius: 4px;
+}
+
+.hour-hand {
+  width: 8px;
+  height: 25%;
+  background: #000;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.minute-hand {
+  width: 6px;
+  height: 35%;
+  background: #000;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.second-hand {
+  width: 3px;
+  height: 40%;
+  background: #666;
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.center-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #000;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.markers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.marker {
+  position: absolute;
+  width: 6px;
+  height: 20px;
+  background: #000;
+  left: 50%;
+  -webkit-transform-origin: 50% 125px;
+  -moz-transform-origin: 50% 125px;
+  -ms-transform-origin: 50% 125px;
+  -o-transform-origin: 50% 125px;
+  transform-origin: 50% 125px;
+}
+
+.hour-number {
+  position: absolute;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  -webkit-transform-origin: center;
+  -moz-transform-origin: center;
+  -ms-transform-origin: center;
+  -o-transform-origin: center;
+  transform-origin: center;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.day-indicators {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  gap: 15px;
+}
+
+.day-indicator {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.day-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 3px solid #000;
+  background: white;
+}
+
+.day-dot.active {
+  background: #000;
+}
+
+.day-label {
+  font-size: 14px;
+  color: #666;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="clock-container">
+  <div class="digital-time" style="font-size: 72px;"></div>
+  <div class="clock">
+    <div class="clock-face">
+      <div class="markers"></div>
+      <div class="hour-number" style="top: 0; left: 50%; -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%);">12</div>
+      <div class="hour-number" style="top: 50%; right: 0; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);">3</div>
+      <div class="hour-number" style="bottom: 0; left: 50%; -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%);">6</div>
+      <div class="hour-number" style="top: 50%; left: 0; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%);">9</div>
+      <div class="hand hour-hand"></div>
+      <div class="hand minute-hand"></div>
+      <div class="hand second-hand"></div>
+      <div class="center-dot"></div>
+    </div>
+  </div>
+  <div class="day-indicators">
+    <div class="day-indicator">
+      <div class="day-dot"></div>
+      <span class="day-label">MON</span>
+    </div>
+    <div class="day-indicator">
+      <div class="day-dot"></div>
+      <span class="day-label">TUE</span>
+    </div>
+    <div class="day-indicator">
+      <div class="day-dot"></div>
+      <span class="day-label">WED</span>
+    </div>
+    <div class="day-indicator">
+      <div class="day-dot"></div>
+      <span class="day-label">THU</span>
+    </div>
+    <div class="day-indicator">
+      <div class="day-dot"></div>
+      <span class="day-label">FRI</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  function requestFullScreenAndPreventSleep() {
+    var elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+
+    if ('wakeLock' in navigator) {
+      function requestWakeLock() {
+        navigator.wakeLock.request('screen').then(function(wakeLock) {
+          console.log('Wake Lock is active');
+        }).catch(function(err) {
+          console.log('Wake Lock error:', err);
+        });
+      }
+      requestWakeLock();
+    } else {
+      var video = document.createElement('video');
+      video.setAttribute('loop', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('title', 'wake-lock-video');
+      video.style.display = 'none';
+      
+      var canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 1;
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, 1, 1);
+      
+      var stream = canvas.captureStream(1);
+      video.srcObject = stream;
+      document.body.appendChild(video);
+      video.play();
+    }
+  }
+
+  document.addEventListener('click', requestFullScreenAndPreventSleep, { once: true });
+
+  var markers = document.querySelector('.markers');
+  for(var i = 0; i < 12; i++) {
+    if(i !== 0 && i !== 3 && i !== 6 && i !== 9) {
+      var marker = document.createElement('div');
+      marker.className = 'marker';
+      marker.style.transform = 'rotate(' + (i * 30) + 'deg)';
+      marker.style.webkitTransform = 'rotate(' + (i * 30) + 'deg)';
+      marker.style.mozTransform = 'rotate(' + (i * 30) + 'deg)';
+      marker.style.msTransform = 'rotate(' + (i * 30) + 'deg)';
+      markers.appendChild(marker);
+    }
+  }
+
+  function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var day = now.getDay();
+    
+    var digitalTime = document.querySelector('.digital-time');
+    digitalTime.textContent = (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes);
+    
+    var secondDegrees = (seconds / 60) * 360;
+    var minuteDegrees = ((minutes + seconds/60) / 60) * 360;
+    var hourDegrees = ((hours % 12 + minutes/60) / 12) * 360;
+    
+    var secondHand = document.querySelector('.second-hand');
+    var minuteHand = document.querySelector('.minute-hand');
+    var hourHand = document.querySelector('.hour-hand');
+    
+    var rotateSecond = 'rotate(' + secondDegrees + 'deg)';
+    var rotateMinute = 'rotate(' + minuteDegrees + 'deg)';
+    var rotateHour = 'rotate(' + hourDegrees + 'deg)';
+    
+    secondHand.style.transform = rotateSecond;
+    secondHand.style.webkitTransform = rotateSecond;
+    secondHand.style.mozTransform = rotateSecond;
+    secondHand.style.msTransform = rotateSecond;
+    
+    minuteHand.style.transform = rotateMinute;
+    minuteHand.style.webkitTransform = rotateMinute;
+    minuteHand.style.mozTransform = rotateMinute;
+    minuteHand.style.msTransform = rotateMinute;
+    
+    hourHand.style.transform = rotateHour;
+    hourHand.style.webkitTransform = rotateHour;
+    hourHand.style.mozTransform = rotateHour;
+    hourHand.style.msTransform = rotateHour;
+
+    var dayDots = document.querySelectorAll('.day-dot');
+    for(var i = 0; i < dayDots.length; i++) {
+      var adjustedDay = day === 0 ? 6 : day - 1;
+      if(i === adjustedDay) {
+        dayDots[i].className = 'day-dot active';
+      } else {
+        dayDots[i].className = 'day-dot';
+      }
+    }
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+})();
+</script>
+</body></html>
