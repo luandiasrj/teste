@@ -1,87 +1,29 @@
 <html><head><base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html><head><base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
 .clock-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f0f0f0;
-  gap: 30px;
+  display: block;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
 }
 
 .clock {
-  width: 250px;
-  height: 250px; 
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   position: relative;
-}
-
-.clock-face {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  margin: 20px auto;
+  border: 2px solid #000;
 }
 
 .digital-time {
-  font-family: Arial, sans-serif;
-  font-size: 36px;
+  font-family: monospace;
+  font-size: 48px !important;
   font-weight: bold;
-  text-align: center;
-}
-
-.hand {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  -webkit-transform-origin: bottom;
-  -moz-transform-origin: bottom;
-  -ms-transform-origin: bottom;
-  -o-transform-origin: bottom;
-  transform-origin: bottom;
-  border-radius: 4px;
-}
-
-.hour-hand {
-  width: 8px;
-  height: 25%;
-  background: #000;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
-
-.minute-hand {
-  width: 6px;
-  height: 35%;
-  background: #000;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-}
-
-.second-hand {
-  width: 3px;
-  height: 40%;
-  background: #666;
-  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-
-.center-dot {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: #000;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin: 10px 0;
 }
 
 .markers {
@@ -92,65 +34,75 @@
 
 .marker {
   position: absolute;
-  width: 6px;
-  height: 20px;
+  width: 4px;
+  height: 15px;
   background: #000;
   left: 50%;
-  -webkit-transform-origin: 50% 125px;
-  -moz-transform-origin: 50% 125px;
-  -ms-transform-origin: 50% 125px;
-  -o-transform-origin: 50% 125px;
-  transform-origin: 50% 125px;
+  transform-origin: 50% 100px;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  background: #000;
+}
+
+.hour-hand {
+  width: 4px;
+  height: 25%;
+}
+
+.minute-hand {
+  width: 3px;
+  height: 35%;
+}
+
+.second-hand {
+  width: 2px;
+  height: 40%;
+  background: #666;
+}
+
+.center-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .hour-number {
   position: absolute;
-  font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-family: monospace;
+  font-size: 18px;
   font-weight: bold;
-  -webkit-transform-origin: center;
-  -moz-transform-origin: center;
-  -ms-transform-origin: center;
-  -o-transform-origin: center;
-  transform-origin: center;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   text-align: center;
-  line-height: 30px;
 }
 
 .day-indicators {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  gap: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .day-indicator {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  gap: 5px;
+  display: inline-block;
+  margin: 0 5px;
 }
 
 .day-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 3px solid #000;
+  border: 2px solid #000;
   background: white;
+  margin: 0 auto 5px;
 }
 
 .day-dot.active {
@@ -158,9 +110,8 @@
 }
 
 .day-label {
-  font-size: 14px;
-  color: #666;
-  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-family: monospace;
   font-weight: bold;
 }
 </style>
@@ -208,6 +159,7 @@
 <script>
 (function() {
   function requestFullScreenAndPreventSleep() {
+    // Tenta fullscreen
     var elem = document.documentElement;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
@@ -217,16 +169,8 @@
       elem.msRequestFullscreen();
     }
 
-    if ('wakeLock' in navigator) {
-      function requestWakeLock() {
-        navigator.wakeLock.request('screen').then(function(wakeLock) {
-          console.log('Wake Lock is active');
-        }).catch(function(err) {
-          console.log('Wake Lock error:', err);
-        });
-      }
-      requestWakeLock();
-    } else {
+    // Múltiplos métodos para manter a tela ativa
+    function createKeepAwakeVideo() {
       var video = document.createElement('video');
       video.setAttribute('loop', '');
       video.setAttribute('playsinline', '');
@@ -246,9 +190,25 @@
       document.body.appendChild(video);
       video.play();
     }
+
+    // Tenta Wake Lock API
+    if ('wakeLock' in navigator) {
+      navigator.wakeLock.request('screen').catch(function() {
+        createKeepAwakeVideo();
+      });
+    } else {
+      createKeepAwakeVideo();
+    }
+
+    // Método adicional usando refresh periódico
+    setInterval(function() {
+      window.dispatchEvent(new Event('mousemove'));
+    }, 30000);
   }
 
-  document.addEventListener('click', requestFullScreenAndPreventSleep, { once: true });
+  // Ativa os métodos tanto no clique quanto no carregamento
+  document.addEventListener('click', requestFullScreenAndPreventSleep);
+  window.addEventListener('load', requestFullScreenAndPreventSleep);
 
   var markers = document.querySelector('.markers');
   for(var i = 0; i < 12; i++) {
